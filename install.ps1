@@ -109,15 +109,32 @@ foreach ($wf in $workflows) {
 }
 Write-Ok "Installed $($workflows.Count) workflows: $($workflows.Name -join ', ')."
 
+# ─── Extra Skills (antigravity-awesome-skills) ───────────────────────────────
+Write-Step "Installing extra skills via antigravity-awesome-skills..."
+
+if (Get-Command npx -ErrorAction SilentlyContinue) {
+    try {
+        npx antigravity-awesome-skills --antigravity
+        Write-Ok "Extra skills installed successfully."
+    } catch {
+        Write-Warn "antigravity-awesome-skills failed: $_"
+        Write-Warn "You can run it manually later: npx antigravity-awesome-skills --antigravity"
+    }
+} else {
+    Write-Warn "npx not found - skipping extra skills installation."
+    Write-Warn "Install Node.js from https://nodejs.org, then run:"
+    Write-Warn "  npx antigravity-awesome-skills --antigravity"
+}
+
 # ─── Summary ─────────────────────────────────────────────────────────────────
 Write-Host ""
-Write-Host "═══════════════════════════════════════════" -ForegroundColor DarkGray
+Write-Host "-------------------------------------------" -ForegroundColor DarkGray
 Write-Host "Installation complete!" -ForegroundColor Green
 Write-Host ""
 Write-Host "What was installed:" -ForegroundColor White
-Write-Host "  GEMINI.md   → $GeminiMdDest"
-Write-Host "  Skills      → $SkillsDest"
-Write-Host "  Workflows   → $WorkflowsDest"
+Write-Host "  GEMINI.md   -> $GeminiMdDest"
+Write-Host "  Skills      -> $SkillsDest"
+Write-Host "  Workflows   -> $WorkflowsDest"
 Write-Host ""
 Write-Host "Restart Antigravity to pick up the new rules and skills." -ForegroundColor Yellow
 Write-Host ""
