@@ -39,9 +39,9 @@ $SkillsSrc     = Join-Path $RepoRoot "skills"
 $WorkflowsSrc  = Join-Path $RepoRoot "global_workflows"
 
 # ─── Helpers ─────────────────────────────────────────────────────────────────
-function Write-Step([string]$msg) { Write-Host "  → $msg" -ForegroundColor Cyan }
-function Write-Ok([string]$msg)   { Write-Host "  ✔ $msg" -ForegroundColor Green }
-function Write-Warn([string]$msg) { Write-Host "  ⚠ $msg" -ForegroundColor Yellow }
+function Write-Step([string]$msg) { Write-Host "  -> $msg" -ForegroundColor Cyan }
+function Write-Ok([string]$msg)   { Write-Host "  [OK] $msg" -ForegroundColor Green }
+function Write-Warn([string]$msg) { Write-Host "  [WARN] $msg" -ForegroundColor Yellow }
 
 # ─── Pre-flight checks ───────────────────────────────────────────────────────
 Write-Host ""
